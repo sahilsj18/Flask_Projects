@@ -1,0 +1,32 @@
+<!-- templates/results.html -->
+{% extends "base.html" %}
+{% block title %}Results{% endblock %}
+{% block content %}
+<div class="content-box">
+    <div class="page-header">
+        <h2>Match Results</h2>
+    </div>
+    
+    <div class="results-list">
+        {% for match in matches %}
+        <div class="result-card">
+            <div class="result-date">{{ match.date.strftime('%d %B %Y') }}</div>
+            <div class="result-teams">
+                <div class="team {% if match.team1_score > match.team2_score %}winner{% endif %}">
+                    <span class="team-name">{{ match.team1.name }}</span>
+                    <span class="score">{{ match.team1_score }}</span>
+                </div>
+                <div class="separator">-</div>
+                <div class="team {% if match.team2_score > match.team1_score %}winner{% endif %}">
+                    <span class="score">{{ match.team2_score }}</span>
+                    <span class="team-name">{{ match.team2.name }}</span>
+                </div>
+            </div>
+            <div class="match-venue">
+                <i class="venue-icon">📍</i> {{ match.venue }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

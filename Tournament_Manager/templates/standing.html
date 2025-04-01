@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tournament Standings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('add_team') }}">Teams</a>
+        <a href="{{ url_for('fixtures') }}">Fixtures</a>
+        <a href="{{ url_for('standings') }}">Standings</a>
+    </nav>
+    
+    <div class="container">
+        <h1>Tournament Standings</h1>
+        
+        <form id="match-result-form" method="POST">
+            <select name="fixture_id" required>
+                <option value="">Select Fixture</option>
+                {% for fixture in fixtures %}
+                <option value="{{ fixture[0] }}">
+                    {{ fixture[1] }} vs {{ fixture[2] }} - {{ fixture[3] }}
+                </option>
+                {% endfor %}
+            </select>
+            
+            <input type="number" name="home_score" placeholder="Home Team Score" required>
+            <input type="number" name="away_score" placeholder="Away Team Score" required>
+            <button type="submit">Update Result</button>
+        </form>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Played</th>
+                    <th>Won</th>
+                    <th>Drawn</th>
+                    <th>Lost</th>
+                    <th>Points</th>
+                    <th>Goal Difference</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for standing in standings %}
+                <tr>
+                    <td>{{ standing[0] }}</td>
+                    <td>{{ standing[1] }}</td>
+                    <td>{{ standing[2] }}</td>
+                    <td>{{ standing[3] }}</td>
+                    <td>{{ standing[4] }}</td>
+                    <td>{{ standing[5] }}</td>
+                    <td>{{ standing[6] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

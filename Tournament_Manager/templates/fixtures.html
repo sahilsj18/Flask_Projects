@@ -1,0 +1,44 @@
+<!-- templates/fixtures.html -->
+{% extends "base.html" %}
+{% block title %}Match Fixtures{% endblock %}
+{% block content %}
+<div class="content-box">
+    <div class="page-header">
+        <h2>Match Fixtures</h2>
+        <a href="{{ url_for('add_fixture') }}" class="btn btn-primary">
+            <span>+</span> Add New Fixture
+        </a>
+    </div>
+    
+    <div class="fixtures-list">
+        {% for match in matches %}
+        <div class="fixture-card {% if match.is_completed %}completed{% endif %}">
+            <div class="match-date">{{ match.date.strftime('%d %B %Y - %H:%M') }}</div>
+            <div class="match-teams">
+                <div class="team team1">
+                    <span class="team-name">{{ match.team1.name }}</span>
+                    {% if match.is_completed %}
+                    <span class="score">{{ match.team1_score }}</span>
+                    {% endif %}
+                </div>
+                <div class="vs">VS</div>
+                <div class="team team2">
+                    {% if match.is_completed %}
+                    <span class="score">{{ match.team2_score }}</span>
+                    {% endif %}
+                    <span class="team-name">{{ match.team2.name }}</span>
+                </div>
+            </div>
+            <div class="match-venue">
+                <i class="venue-icon">📍</i> {{ match.venue }}
+            </div>
+            {% if not match.is_completed %}
+            <div class="match-actions">
+                <a href="{{ url_for('update_score', match_id=match.id) }}" class="btn btn-secondary">Update Score</a>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

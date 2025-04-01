@@ -1,0 +1,38 @@
+<!-- templates/add_fixture.html -->
+{% extends "base.html" %}
+{% block title %}Add Match Fixture{% endblock %}
+{% block content %}
+<div class="content-box">
+    <h2>Add New Fixture</h2>
+    <form method="POST">
+        <div>
+            <label for="team1_id">Team 1</label>
+            <select id="team1_id" name="team1_id" required>
+                <option value="">Select Team 1</option>
+                {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="team2_id">Team 2</label>
+            <select id="team2_id" name="team2_id" required>
+                <option value="">Select Team 2</option>
+                {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="date">Date & Time</label>
+            <input type="datetime-local" id="date" name="date" required>
+        </div>
+        <div>
+            <label for="venue">Venue</label>
+            <input type="text" id="venue" name="venue" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Fixture</button>
+    </form>
+    <a href="{{ url_for('fixtures') }}" class="btn btn-secondary">Back to Fixtures</a>
+</div>
+{% endblock %}

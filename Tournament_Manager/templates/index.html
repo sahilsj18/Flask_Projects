@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-content">
+        <h1>⚽ Welcome to the Football Tournament Manager</h1>
+        <p>Organize and track your football tournaments easily!</p>
+        <div class="buttons">
+            <a href="{{ url_for('login') }}" class="btn-blue">Login</a>
+            <a href="{{ url_for('register') }}" class="btn-outline">Register</a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/football-hero.jpg') }}" alt="Football Match">
+    </div>
+</div>
+{% endblock %}

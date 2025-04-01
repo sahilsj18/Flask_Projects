@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Update Score{% endblock %}
+
+{% block content %}
+<div class="content-box">
+    <h2>Update Score</h2>
+    <form method="POST">
+        <div>
+            <label for="team1_score">{{ match.team1.name }} Score</label>
+            <input
+                type="number"
+                id="team1_score"
+                name="team1_score"
+                value="{{ match.team1_score }}"
+                min="0"
+                required
+            />
+        </div>
+        <div>
+            <label for="team2_score">{{ match.team2.name }} Score</label>
+            <input
+                type="number"
+                id="team2_score"
+                name="team2_score"
+                value="{{ match.team2_score }}"
+                min="0"
+                required
+            />
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ url_for('fixtures') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

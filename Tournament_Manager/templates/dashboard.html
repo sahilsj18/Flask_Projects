@@ -1,0 +1,40 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="hero-section">
+    <div class="tournament-box">
+        <div class="tournament-header">
+            <h1>⚽ Football Tournament Manager</h1>
+            <p>Manage your football tournament with ease</p>
+        </div>
+        <div class="feature-grid">
+            <!-- <div class="feature-card" onclick="window.location.href='{{ url_for('add_team') }}'"> -->
+                <div class="feature-card" onclick="window.location.href='teams'">
+
+                <div class="icon">👥</div>
+                <h3>Teams</h3>
+                <p>Manage teams and players</p>
+            </div>
+            <!-- <div class="feature-card" onclick="window.location.href='{{ url_for('fixtures') }}'"> -->
+                <div class="feature-card" onclick="window.location.href='/fixtures'">
+                <div class="icon">📅</div>
+                <h3>Fixtures</h3>
+                <p>Schedule and manage matches</p>
+            </div>
+            <!-- <div class="feature-card" onclick="window.location.href='{{ url_for('results') }}'"> -->
+                <div class="feature-card" onclick="window.location.href='/results'">
+                <div class="icon">🏆</div>
+                <h3>Results</h3>
+                <p>View match results</p>
+            </div>
+            <!-- <div class="feature-card" onclick="window.location.href='{{ url_for('standings') }}'"> -->
+                <div class="feature-card" onclick="window.location.href='/standings'">
+                <div class="icon">📊</div>
+                <h3>Standings</h3>
+                <p>Tournament standings</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
